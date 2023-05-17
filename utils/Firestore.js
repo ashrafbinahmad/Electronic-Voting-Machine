@@ -19,91 +19,52 @@ const db = () => {
 
 }
 export default {
-    submitTheVote: function (vote) {
+
+    submitTheVoteAsNumberOnly: function (vote) {
         return new Promise((resolve, reject) => {
-            db().collection('votes').doc().set(vote).then(() => {
-                resolve()
-                console.log("submitted to net")
-            }).catch(() => {
-                reject()
-                alert("Seems to have network issues.")
+            let candidateCurrentVoteCount = 0;
+            let updatedExisting = false;
+            db().collection('votes').get().then(async (snapShot) => {
+                snapShot.docs.forEach(async (doc) => {
+                    const docData = doc.data();
+                    if (doc.id == vote.category) {
+                        candidateCurrentVoteCount = docData[vote.candidateName] || 0;
+                        let updateData = { ...docData }
+                        updateData[vote.candidateName] = candidateCurrentVoteCount + 1
+                        await db()
+                            .collection('votes')
+                            .doc(vote.category)
+                            .update(updateData)
+                            .then(() => {
+                                updatedExisting = true;
+                                resolve()
+                            }).catch(() => {
+                                reject()
+                            })
+                    }
+                    
+                });
             })
         })
+
+
 
     },
 
 
-    getVoteCounts: async function () {
-        let counts = [];
-
-        Consts.forEach(async (category, categoryIndex) => {
-            let currentCategory = {
-                category: '',
-                candidate_votes: []
-            };
-            currentCategory.category = category.category;
-            await category.candidates.forEach(async (candidate, candIndex) => {
-                let currentCandidate = {
-                    candidate_name: '',
-                    candidate_vote_count: 0,
-                };
-                let voteCount = 0;
-                await db().collection('votes').get().then(async (snapShot) => {
-                    snapShot.docs.forEach(async (doc) => {
-                        // console.log(doc.data())
-                        const docData = doc.data();
-                        if (docData.candidateName == candidate.name) {
-                            voteCount++;
-                        }
-                    });
-                }).then(() => {
-                    currentCandidate.candidate_name = candidate.name;
-                    currentCandidate.candidate_vote_count = voteCount * VOTE_VALUE;
-                }).finally(() => {
-                    currentCategory.candidate_votes.push(currentCandidate);
-                })
-            })
-            counts.push(currentCategory);
-            console.log("first", counts)
-        })
-        // console.log(counts)
-        return counts
-    },
-    getVoteCountsInOneArray: async function () {
-        let counts = [];
+    getVoteCountsInOneArrayFromDBSavedWithNumbers: async function () {
+        let counts = {};
         return new Promise((resolve, reject) => {
-            Consts.forEach(async (category, categoryIndex, array) => {
+            db().collection('votes').get().then(async (snapShot) => {
+                snapShot.docs.forEach(async (doc) => {
+                    const docData = doc.data();
+                    counts[doc.id] = docData;
 
-                category.candidates.forEach(async (candidate, candIndex) => {
-                    let currentCandidate = {
-                        candidate_name: '',
-                        candidate_vote_count: 0,
-                        category: category.category
-                    };
-                    let voteCount = 0;
-                    await db().collection('votes').get().then(async (snapShot) => {
-                        snapShot.docs.forEach(async (doc) => {
-                            // console.log(doc.data())
-                            const docData = doc.data();
-                            if (docData.candidateName == candidate.name) {
-                                voteCount++;
-                            }
-                        });
-                    }).then(() => {
-                        currentCandidate.candidate_name = candidate.name;
-                        currentCandidate.candidate_vote_count = voteCount * VOTE_VALUE;
-                    }).then(() => {
-                        counts.push(currentCandidate);
-                    }).finally(() => {
-                        // currentCategory.candidate_votes.push(currentCandidate);
-
-                        if (categoryIndex === array.length - 1) {
-                            console.log("counts", counts)
-                            resolve(counts)
-                        }
-                    })
-                })
+                });
+            }).then(() => {
+                resolve(counts)
             })
         })
     },
 }
+

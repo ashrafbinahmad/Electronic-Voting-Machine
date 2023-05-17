@@ -3,31 +3,31 @@ export default candidatesUnderCategories = [
         category: 'President',
         candidates: [
             {
-                name: 'John Doe',
-                image: 'https://via.placeholder.com/150',
+                name: 'Sideeq Arafa',
+                image: 'candidate-images/presi1.jpg',
                 description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl quis ultricies ultricies, nunc nisl',
                 voted: false
             },
             {
-                name: 'Jane Doe',
-                image: 'https://via.placeholder.com/150',
+                name: 'Ahmad Khazilane',
+                image: 'candidate-images/presi2.jpg',
                 description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl quis ultricies ultricies, nunc nisl',
                 voted: false
             }
         ]
     },
     {
-        category: 'Secretory',
+        category: 'Secretary',
         candidates: [
             {
-                name: 'John Doe secretory',
-                image: 'https://via.placeholder.com/150',
+                name: 'Younus Kunjar',
+                image: 'candidate-images/secr1.jpg',
                 description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl quis ultricies ultricies, nunc nisl',
                 voted: false
             },
             {
-                name: 'Jane Doe secretory2',
-                image: 'https://via.placeholder.com/150',
+                name: 'Khader Uppinangadi',
+                image: 'candidate-images/secr2.jpg',
                 description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl quis ultricies ultricies, nunc nisl',
                 voted: false
             }
@@ -37,14 +37,14 @@ export default candidatesUnderCategories = [
         category: 'Treasurer',
         candidates: [
             {
-                name: 'John Doe tr',
-                image: 'https://via.placeholder.com/150',
+                name: 'Jalal Edachakai',
+                image: 'candidate-images/treas1.jpg',
                 description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl quis ultricies ultricies, nunc nisl',
                 voted: false
             },
             {
-                name: 'Jane Doe tr2',
-                image: 'https://via.placeholder.com/150',
+                name: 'Aznab Bangod',
+                image: 'candidate-images/treas2.jpg',
                 description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl quis ultricies ultricies, nunc nisl',
                 voted: false
             }

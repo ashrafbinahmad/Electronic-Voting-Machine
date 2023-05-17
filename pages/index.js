@@ -28,6 +28,10 @@ export default function Home() {
 
   useEffect(() => {
     if (isAuthorizedFromLocalStoragePass()) setIsAuthorized(true)
+    // BLOCKS THE USER FROM LEAVING THE PAGE
+    window.onbeforeunload = function () {
+      return "Dont leave the page";
+    }
   }, [])
   if (!isAuthorized) return <div>not authorized</div>
 
@@ -65,7 +69,13 @@ const DisplayOfCandidates = ({ candidatesUnderCategories, setCandidatesUnderCate
           <div className={`${s.row} ${s.category_name}`} key={index}>{category.category}</div>
           {
             category?.candidates?.map((candidate, index) => (
-              <div className={s.row} key={index}>{candidate.name}</div>
+              <div className={s.row} key={index}>
+                <div className={s.candidate_name}>{candidate.name}</div>
+                <div className={s.img_container}>
+                  <img src={candidate.image} alt="" />
+                  </div>
+                
+                </div>
             ))
           }
         </div>
@@ -117,11 +127,8 @@ const voteButtonPressedAction = async (category, candidateName, setCandidatesUnd
       }
     })
     if (votedOnThisCat) votedOnAllCategories = true
-    // console.log("votedOnThisCat", votedOnThisCat)
   })
-  console.log("votedCatList", votedCatList)
   if (votedCatList.length != candidatesUnderCategories.length - 1) votedOnAllCategories = false
-  console.log("votedOnAllCategories", votedOnAllCategories)
 
 
   const vote = {
@@ -130,18 +137,14 @@ const voteButtonPressedAction = async (category, candidateName, setCandidatesUnd
     votingTime: new Date(Date.now()),
     voterCategory: window.localStorage.getItem('voter_category') || ''
   }
-  // console.log(vote)
-  await Firestore.submitTheVote(vote).then(() => {
-    console.log("submitted")
+  await Firestore.submitTheVoteAsNumberOnly(vote).then(() => {
     setCandidatesUnderCategories(currentData => {
       currentData[catIndex].candidates[candiIndex].voted = true
-      console.log(currentData)
       return [...currentData]
     })
     const completedAudio = new Audio(AUDIO_FOR_EACH_VOTE)
     completedAudio.play()
   }).catch(err => {
-    console.log("error while setting data")
   })
   if (!votedOnAllCategories) return
 
@@ -153,8 +156,6 @@ const voteButtonPressedAction = async (category, candidateName, setCandidatesUnd
 
   }, 1000 * WAITING_INTERVAL_TO_CLEAR_THE_VOTES_IN_SEC);
 
-  // const voteCounts = await Firestore.getVoteCounts()
-  // console.log("voteCounts", voteCounts)
 }
 
 const clearVotes = (setCandidatesUnderCategories) => {

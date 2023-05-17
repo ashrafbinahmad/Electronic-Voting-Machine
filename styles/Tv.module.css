@@ -1,0 +1,88 @@
+.main {
+  --bg-color: rgb(101, 19, 19);
+  --foreground-color: rgb(255, 255, 255);
+  --progress-height: 4rem;
+
+  --border-color: rgb(169, 48, 48);
+  background-color: var(--bg-color);
+  color: var(--foreground-color);
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+}
+
+.category_item {
+  border: 1px solid var(--border-color);
+}
+.category_name {
+  background-color: black;
+  text-align: center;
+  padding: 1rem;
+  display: none;
+}
+.candidate_list {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  height: 100%;
+}
+.candidate_item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  padding: 1rem;
+}
+.candidate_item .left {
+  min-width: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.candidate_item .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* .President .progress_bar {
+    background-color: violet;
+
+}
+.Secretory .progress_bar {
+    background-color: orange;
+}
+.Treasuror .progress_bar {
+    background-color: green;
+} */
+.progress_bar {
+  background-color: violet;
+  height: var(--progress-height);
+  transition: all 1s ease-in-out;
+  border-radius: 0.3rem;
+  display: flex;
+  align-items: center;
+}
+.candidate_name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  /* padding: 0 1rem; */
+}
+.vote_count {
+  font-size: 3rem;
+  color: rgb(101, 19, 19);
+  padding: 0 .7rem;
+  margin-top: -.3rem;
+  font-weight: bold;
+  
+  
+}
+.img_container > img {
+  height: 7rem;
+  border-radius: 0.3rem;
+}
+.second_in_category {
+  border: 1px solid var(--foreground-color);
+  border-top: 0px;
+}
