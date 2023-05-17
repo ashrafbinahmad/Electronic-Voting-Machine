@@ -33,10 +33,16 @@ export default function Home() {
       return "Dont leave the page";
     }
   }, [])
+
+  // request full screen
+  useEffect(() => {
+    const main = document.getElementById('main')
+    main?.requestFullscreen()
+  }, [])
   if (!isAuthorized) return <div>not authorized</div>
 
   return (
-    <main className={s.main}>
+    <main className={s.main} id="main">
       <div className={s.container}>
         <div className={s.top}>
           <span className={s.rect}></span>
