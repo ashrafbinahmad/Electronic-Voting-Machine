@@ -6,11 +6,17 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "turbo": "next dev --turbo"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.13.0",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.2",
+    "firebase": "^9.22.0",
     "next": "13.4.2",
     "react": "18.2.0",
     "react-dom": "18.2.0"
