@@ -1,4 +1,4 @@
-export default candidatesUnderCategories = [
+const candidatesUnderCategories = [
     {
         category: 'President',
         candidates: [
@@ -51,3 +51,5 @@ export default candidatesUnderCategories = [
         ]
     },
 ]
+
+export default candidatesUnderCategories;
