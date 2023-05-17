@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-export default function admin() {
+export default function Admin() {
 
     const [isAuthorized, setIsAuthorized] = React.useState(false)
     const isAuthorizedFromLocalStoragePass = () => {
