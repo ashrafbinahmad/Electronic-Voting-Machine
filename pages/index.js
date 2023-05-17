@@ -111,14 +111,14 @@ const voteButtonPressedAction = async (category, candidateName, setCandidatesUnd
   // if (candidatesUnderCategories[catIndex].candidates[candiIndex].voted) return
 
   let alreadyVotedInThisCat = false
-  candidatesUnderCategories[catIndex].candidates.forEach(candidate => {
+  candidatesUnderCategories?.[catIndex].candidates.forEach(candidate => {
     if (candidate.voted) alreadyVotedInThisCat = true
   })
   if (alreadyVotedInThisCat) return
 
   let votedOnAllCategories = true;
   let votedCatList = []
-  candidatesUnderCategories.forEach(cat => {
+  candidatesUnderCategories?.forEach(cat => {
     let votedOnThisCat = false
     cat.candidates.forEach(candi => {
       if (candi.voted) {
@@ -128,7 +128,7 @@ const voteButtonPressedAction = async (category, candidateName, setCandidatesUnd
     })
     if (votedOnThisCat) votedOnAllCategories = true
   })
-  if (votedCatList.length != candidatesUnderCategories.length - 1) votedOnAllCategories = false
+  if (votedCatList.length != candidatesUnderCategories?.length - 1) votedOnAllCategories = false
 
 
   const vote = {
