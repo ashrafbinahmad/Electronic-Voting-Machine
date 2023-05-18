@@ -5,7 +5,7 @@ import Consts from '@/utils/Consts';
 
 
 const INTERNET_CHECK_INTERVAL_SEC = 10;
-const ELECTION_UPDATE_INTERVAL_MIN = 5;
+const ELECTION_UPDATE_INTERVAL_MIN = 20;
 export default function Tv() {
     const [results, setResults] = React.useState([])
     const [isConnected, setIsConnected] = React.useState(false)

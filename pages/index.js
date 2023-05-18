@@ -110,7 +110,7 @@ const ButtonsForVoting = ({ candidatesUnderCategories, setCandidatesUnderCategor
           </div>
         ))
       }
-      <button onClick={() => clearVotes(setCandidatesUnderCategories)}>CLEAR VOTES</button>
+      {/* <button onClick={() => clearVotes(setCandidatesUnderCategories)}>CLEAR VOTES</button> */}
     </>
   )
 }
