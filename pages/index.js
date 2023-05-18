@@ -10,7 +10,8 @@ import Consts from '@/utils/Consts'
 const inter = Inter({ subsets: ['latin'] })
 const AUDIO_FOR_COMPLETED = "/completed_sound.wav"
 const AUDIO_FOR_EACH_VOTE = "/vote_sound.mp3"
-const WAITING_INTERVAL_TO_CLEAR_THE_VOTES_IN_SEC = 20
+const AUDIO_TO_ENTER_NEXT_VOTER = "/next.mp3"
+const WAITING_INTERVAL_TO_CLEAR_THE_VOTES_IN_SEC = 5
 const WAITING_INTERVAL_TO_CALL_NEXT_VOTER_IN_SEC = 1 + WAITING_INTERVAL_TO_CLEAR_THE_VOTES_IN_SEC
 
 // const candidatesUnderCategories = Consts
@@ -146,10 +147,10 @@ const voteButtonPressedAction = async (category, candidateName, setCandidatesUnd
   await Firestore.submitTheVoteAsNumberOnly(vote).then(() => {
     setCandidatesUnderCategories(currentData => {
       currentData[catIndex].candidates[candiIndex].voted = true
+      const completedAudio = new Audio(AUDIO_FOR_EACH_VOTE)
+      completedAudio.play()
       return [...currentData]
     })
-    const completedAudio = new Audio(AUDIO_FOR_EACH_VOTE)
-    completedAudio.play()
   }).catch(err => {
   })
   if (!votedOnAllCategories) return
@@ -161,6 +162,11 @@ const voteButtonPressedAction = async (category, candidateName, setCandidatesUnd
     clearVotes(setCandidatesUnderCategories)
 
   }, 1000 * WAITING_INTERVAL_TO_CLEAR_THE_VOTES_IN_SEC);
+  setTimeout(() => {
+    const nextVoterAudio = new Audio(AUDIO_TO_ENTER_NEXT_VOTER)
+    nextVoterAudio.play()
+
+  }, 1000 * WAITING_INTERVAL_TO_CALL_NEXT_VOTER_IN_SEC);
 
 }
 

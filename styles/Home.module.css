@@ -106,6 +106,7 @@
 }
 .forward_icon {
   rotate: 180deg;
+  color: rgb(185, 183, 183);
 }
 .forward_icon.isSelected {
   color: green;

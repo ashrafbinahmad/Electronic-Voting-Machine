@@ -9,8 +9,6 @@ const nextConfig = {
     AUTH_DOMAIN: process.env.AUTH_DOMAIN,
     PROJECT_ID: process.env.PROJECT_ID,
     APP_ID: process.env.APP_ID,
-
-    
   }
 }
 
