@@ -1,4 +1,30 @@
+## Environmental variables needed
+- LOCAL_STORAGE_ADMIN_PASS=
+- LOCAL_STORAGE_EVM_PASS=
+- LOCAL_STORAGE_PUBLIC_RESULTS_PASS=
+- API_KEY=
+- AUTH_DOMAIN=
+- PROJECT_ID=
+- APP_ID=
+- 
+
+## Links
+- Link to evm ui = /[LOCAL_STORAGE_EVM_PASS]
+- Link to display results = /[LOCAL_STORAGE_PUBLIC_RESULTS_PASS]
+
+## Guides
+- Each candidate should leave the voting place the time they Complete the voting and hears a beep sound.
+- Candidate details can be added in Consts.js file.
+- The voters list and voting status should be managed externally.
+- Once the Firebase firestore is connected, should make a collection of 'votes' with docs of IDs: names of each candidate categories.
+
+![image](https://github.com/ashrafp216/EVM/assets/86481822/21b4043e-9352-494f-a44b-5ec90da3f1b9)
+
+
+
+## Next js starting documentation
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
 
 ## Getting Started
 
