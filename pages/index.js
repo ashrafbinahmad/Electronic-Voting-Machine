@@ -61,7 +61,7 @@ export default function Home() {
 
         </div>
         <div className={s.bottom_area}>
-          Election Commision of Maslac 2023
+          Election Commision of Maslac 2024
         </div>
       </div>
     </main>
