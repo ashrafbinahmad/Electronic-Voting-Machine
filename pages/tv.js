@@ -9,7 +9,17 @@ const ELECTION_UPDATE_INTERVAL_MIN = 20;
 export default function Tv() {
     const [results, setResults] = React.useState([])
     const [isConnected, setIsConnected] = React.useState(false)
+    const [isAuthorized, setIsAuthorized] =  React.useState(false)
+
     const [biggestVoteCount, setBiggestVoteCount] = React.useState(0)
+
+    const isAuthorizedFromLocalStoragePass = () => {
+        const passwordFromLocalStorage = localStorage.getItem('admin_password')
+        if (passwordFromLocalStorage === process.env.LOCAL_STORAGE_ADMIN_PASS) {
+          return true
+        }
+        return false
+      }
 
 
     const loadResults = () => {
@@ -56,6 +66,14 @@ export default function Tv() {
     }, [isConnected])
 
     useEffect(() => {
+        if (isAuthorizedFromLocalStoragePass()) setIsAuthorized(true)
+        // BLOCKS THE USER FROM LEAVING THE PAGE
+        window.onbeforeunload = function () {
+          return "Dont leave the page";
+        }
+      }, [])
+
+    useEffect(() => {
         const interval = setInterval(() => {
             fetch('https://www.google.com/', { mode: 'no-cors' })
                 .then(() => {
@@ -68,6 +86,8 @@ export default function Tv() {
         }, 1000 * INTERNET_CHECK_INTERVAL_SEC)
         return () => clearInterval(interval)
     }, [])
+
+    if (!isAuthorized) return <div>Not Authorized</div>
 
 
     return (

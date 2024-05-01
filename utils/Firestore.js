@@ -4,7 +4,7 @@ import firebase from 'firebase/compat/app'
 import Consts from "./Consts";
 
 
-export const VOTE_VALUE = 10;
+export const VOTE_VALUE = 1;
 
 const db = () => {
     const firebaseConfig = {

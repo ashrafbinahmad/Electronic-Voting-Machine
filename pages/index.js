@@ -35,6 +35,8 @@ export default function Home() {
     }
   }, [])
 
+  
+
   // request full screen
   useEffect(() => {
     const main = document.getElementById('main')
