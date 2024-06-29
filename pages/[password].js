@@ -11,7 +11,7 @@ export default function SetPassword() {
         // if (!password) return
         if (password === process.env.LOCAL_STORAGE_ADMIN_PASS) {
             localStorage.setItem('admin_password', password)
-            router.push('/admin')
+            router.push('/tv')
             return
         }
         if (password === process.env.LOCAL_STORAGE_EVM_PASS) {
