@@ -9,7 +9,7 @@ const candidatesUnderCategories = [
                 voted: false
             },
             {
-                name: 'Muhammad B.B',
+                name: 'Muhammad B B',
                 image: 'candidate-images/cand 4.jpg',
                 description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl quis ultricies ultricies, nunc nisl',
                 voted: false
